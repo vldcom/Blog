@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../models/models';
+import { BlogService } from '../service/blog.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -8,26 +9,16 @@ import { Blog } from '../models/models';
 })
 export class BlogListComponent implements OnInit {
 
-  blogList: Blog[] = [
-    { Name: 'Florin 1', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 2', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 3', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 4', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 5', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 6', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 7', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 8', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 9', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 10', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 11', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-    { Name: 'Florin 12', Id: 789, Description: 'Aici am facut chestia ZZ', Content: `FS FSSSS` },
-  ]
+  blogList: Blog[] = [];
+  slicedPages: Blog[] = [];
 
-  slicedPages = this.blogList.slice(0, 5);
-
-  constructor() { }
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+    this.blogService.getBlogList().subscribe(result => {
+      this.blogList = result;
+      this.slicedPages = this.blogList.slice(0, 5);
+    })
   }
 
   public onPageChange(event: any){

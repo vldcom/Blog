@@ -1,6 +1,6 @@
 <div class="d-flex flex-column align-items-center">
     <div class="" *ngFor="let blog of slicedPages">
-        {{blog.Name}} -- {{blog.Description}}
+       <a routerLink="/blogDetails/{{blog.Id}}"> {{blog.Name}} -- {{blog.Description}}</a>
     </div>
 
     <mat-paginator
