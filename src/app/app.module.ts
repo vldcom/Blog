@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatPaginatorModule,
     BrowserAnimationsModule,
     NgbModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
